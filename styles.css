@@ -1,0 +1,44 @@
+.outer-container {
+	max-height: 600px;
+	overflow: hidden;
+	position: relative;
+}
+.image-container {
+	width:100%;
+	height: 0px;
+	padding-bottom: 50%;
+	background-image: url(https://images.unsplash.com/photo-1439694458393-78ecf14da7f9?q=80&fm=jpg&s=643e44f5177366de6cc914c8bcfbe064);
+	background-size: cover;
+  background-position: center;
+}
+.text-container {
+	width:400px;
+	margin: 0 auto;
+	color: #fff;
+	position: absolute;
+	text-align: center;
+	top:50%;
+	left:50%;
+	margin-left: -200px;
+	transform: translateY(-50%);
+}
+
+
+body {
+  padding-top: 0px;
+}
+pre.prettyprint {
+  font-size: 14px;
+  border-radius: 5px;
+  overflow: auto;
+  padding: 10px 20px!important;
+  margin: 20px 0;
+  background: #f6f9fa;
+  line-height: 1.4;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+section {
+  margin-top:30px;
+}

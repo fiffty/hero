@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Perfect Hero Image</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="strapdown.css">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+	<div class="outer-container">
+		<div class="image-container"></div>
+		<div class="text-container">
+			<h2>HERO IMAGE</h2>
+			<h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent venenatis risus quam, ut porttitor est fermentum sit amet.</h3>
+		</div>
+	</div>
+
+	<xmp theme="united" style="display:none;">
+	# Markdown
+	</xmp>
+
+	<div class="container">
+		<section class="row">
+			<h1>The Perfect Hero Image</h1>
+
+			<h2>The Challenge</h2>
+			<p>The challenge of this module is to create a hero section that:
+				<ol>
+					<li>Spans across the full-width</li>
+					<li>Has a responsive height relative to its width</li>
+					<li>Has text content that is centered horizontally and vertically</li>
+				</ol>
+				We will look at a few CSS tricks in doing so. Most of them are done using the differences between CSS properties in regards to how they intrepert % values.
+			</p>
+		</section>
+
+		<section class="row">
+			<h2>Static height hero</h2>
+			<p>Let's first create a hero section with a static height.</p>
+			<div class="col-sm-6">
+				<pre class="prettyprint">&lt;div class="hero"&gt;
+  &lt;div class="text"&gt;
+    &lt;h1&gt;Some Text Here&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+				</pre>
+			</div>
+			<div class="col-sm-6">
+				<pre class="prettyprint">.hero {
+  width:100%;
+  height:300px;
+  background-image: url(...); 
+  background-size:cover;
+  background-position:center; 
+}
+				</pre>
+			</div>
+			<div class="col-xs-12">
+				<div style="width:100%;height:300px;background-image:url(https://images.unsplash.com/photo-1439694458393-78ecf14da7f9?q=80&fm=jpg&s=643e44f5177366de6cc914c8bcfbe064);background-size:cover;background-position:center;">
+					<div><h1>Some Text Here</h1></div>
+				</div>
+			</div>
+		</section>
+		<section class="row">
+			<h2>Center anything both horizontally and vertically</h2>
+			<p>There are many ways to center things using CSS. The easiest way to center an element horizontally would be to do <code>display:block;margin:0 auto;</code>. Vertically centering elements can be a little more tricky. You could calculate the height of the element and its parent element and give a top margin accordingly. However, there are numerous cases in which each method may not work.</p>
+			<p>So let's look at a foolproof way to center any element both horizontally and vertically using CSS. First, we will either have the element relatively or absolutely positioned. We then give it <code>top:50%;left:50%;</code> to move it 50% of its parent element's width to the right and 50% of its parent element's height to the bottom. Afterwards, we give it <code>transform: translate(-50%,-50%)</code> to move it 50% of its own width to the left and 50% of its own height to the top.</p>
+			<p>This trick works because % values for <code>top</code> and <code>left</code> are calculated in reference to the parent element's width and height, while % values for <code>transform: translate()</code> are calculated in reference to its own width and height.</p>
+			<div class="col-sm-6">
+				<pre class="prettyprint">&lt;div class="hero"&gt;
+  &lt;div class="text"&gt;
+    &lt;h1&gt;Some Text Here&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+				</pre>
+			</div>
+			<div class="col-sm-6">
+				<pre class="prettyprint">.hero {
+  ...
+  position:relative;
+}
+.text {
+  width:300px;
+  position:relative;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+				</pre>
+			</div>
+			<div class="col-xs-12">
+				<div style="width:100%;height:300px;background-image:url(https://images.unsplash.com/photo-1439694458393-78ecf14da7f9?q=80&fm=jpg&s=643e44f5177366de6cc914c8bcfbe064);background-size:cover;background-position:center;position:relative">
+					<div style="width:300px;position:relative;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;"><h1>Some Text Here</h1></div>
+				</div>
+			</div>
+		</section>
+		<section class="row">
+			<h2>Giving a height that is relative to width</h2>
+			<p>Now let's give an element a height that will change depending on the screen size. One way to do this is to have it set relative to the width of the same element. First, we set the explicitly set the <code>height</code> of the element to zero. Then, we provide a % value for <code>padding-bottom</code>. This works because the % value is calculated in reference to the width.</p>
+			<div class="col-sm-6">
+				<pre class="prettyprint">&lt;div class="hero"&gt;
+  &lt;div class="text"&gt;
+    &lt;h1&gt;Some Text Here&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+				</pre>
+			</div>
+			<div class="col-sm-6">
+				<pre class="prettyprint">.hero {
+  width:100%;
+  height:0px;
+  padding-bottom:30%;
+  background-image: url(...); 
+  background-size:cover;
+  background-position:center; 
+  position:relative;
+}
+.text {
+  ...
+}
+				</pre>
+			</div>
+			<div class="col-xs-12">
+				<div style="width:100%;height:0px;padding-bottom:30%;background-image:url(https://images.unsplash.com/photo-1439694458393-78ecf14da7f9?q=80&fm=jpg&s=643e44f5177366de6cc914c8bcfbe064);background-size:cover;background-position:center;position:relative">
+					<div style="width:300px;position:relative;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;"><h1>Some Text Here</h1></div>
+				</div>
+			</div>
+		</section>
+		<section class="row">
+			<h2>Giving a height that is relative to width</h2>
+			<p>You'll notice from above that we achieved a responsive height but the text container's position got wonky. We need to dig a bit deeper to understand what's happening here.</p>
+			<p>The <code>.hero</code> element has a responsive height using <code>padding-bottom</code>. It can hold other elements inside of it just as if it had a static pixel value height. However, its height is still technically zero. This causes <code>.text</code> element's <code>top:50%;</code> to be calculated as <code>top:0px;</code> (50% of 0px is 0px).</p>
+			<p>So the challenge is this: we need to have <code>.text</code> element's parent element to have a non-zero height. But at the same time, we still need the hero's height to be responsive which can only be achieved using the <code>padding-bottom</code> trick.</p>
+			<p>How do we solve this? We need to add another element into the fray. We will create another element, <code>.image</code>, inside of <code>.hero</code> and move all of the CSS properties related to the image to it, including the responsive height. This way <code>.hero</code> will contain <code>.image</code>, which has the responsive height, and will receive its height implicitly. And as a result, <code>.text</code>'s <code>top:50%;</code> will be calculated into a number greater than zero.
+			<div class="col-sm-6">
+				<pre class="prettyprint">&lt;div class="hero"&gt;
+  &lt;div class="image"&gt;&lt;/div&gt;
+  &lt;div class="text"&gt;
+    &lt;h1&gt;Some Text Here&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+				</pre>
+			</div>
+			<div class="col-sm-6">
+				<pre class="prettyprint">.hero {
+  max-height: 600px;
+  overflow: hidden;
+  position: relative;
+}
+.image {
+  width:100%;
+  height:0px;
+  padding-bottom:30%;
+  background-image:url(...);
+  background-size:cover;
+  background-position:center;
+}
+.text {
+  width:300px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+				</pre>
+			</div>
+			<div class="col-xs-12">
+				<div style="max-height:600px;overflow:hidden;position:relative;">
+					<div style="width:100%;height:0px;padding-bottom:30%;background-image:url(https://images.unsplash.com/photo-1439694458393-78ecf14da7f9?q=80&fm=jpg&s=643e44f5177366de6cc914c8bcfbe064);background-size:cover;background-position:center;"></div>
+					<div style="width:300px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;"><h1>Some Text Here</h1></div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</body>
+</html>
